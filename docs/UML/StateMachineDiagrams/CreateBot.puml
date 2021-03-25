@@ -1,0 +1,25 @@
+```plantuml
+@startuml 
+scale 600 width
+
+[*] --> Configuration : Create New Bot
+Configuration: # Choose rate
+Configuration: # Choose trade balance
+Configuration: # Enter description
+Configuration -right-> Transacting : Request transaction
+Configuration --> Cancelled : Cancel creation
+Transacting --> Created : Succeeded / Save Result
+Transacting --> Failed : Aborted
+state Transacting {
+  state "Create Transaction" as trans
+  trans : Just a test
+  [*] --> trans
+  trans --> trans : Check balance
+  trans --> Confirm : Enough Balance
+}
+Created --> [*]
+Cancelled --> [*]
+Failed --> [*]
+
+@enduml
+```

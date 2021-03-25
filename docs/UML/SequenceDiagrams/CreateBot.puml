@@ -1,0 +1,55 @@
+```plantuml
+@startuml Create Bot
+
+hide footbox
+
+
+actor Investor
+Investor -> "Create Bot : UI" as UI: Create Bot Button
+activate UI
+
+UI -> InvestmentsController: << POST >>
+activate InvestmentsController
+
+InvestmentsController -> BotsService: create(name,rate,balance,description)
+activate BotsService
+deactivate InvestmentsController
+
+
+BotsService -> BotsService: checkExists
+activate BotsService
+deactivate BotsService
+
+alt exist == true
+
+BotsService --> InvestmentsController: AlreadyExist
+activate InvestmentsController
+InvestmentsController --> UI : AlreadyExist
+deactivate InvestmentsController
+UI --> Investor: Error(AlreadyExist) 
+
+else exist == false
+
+database Database
+BotsService -> BotsService: CreateBot
+activate BotsService
+BotsService -> Database: addNewBot
+activate Database
+BotsService <-- Database: NewBotInstance
+deactivate Database
+
+deactivate BotsService
+BotsService --> InvestmentsController: returnNewBotInstance
+deactivate BotsService
+
+activate InvestmentsController
+InvestmentsController --> UI : Created
+deactivate InvestmentsController
+
+UI --> Investor: Success(Creation of Bot)
+deactivate UI
+
+end
+
+@enduml
+```

@@ -1,0 +1,14 @@
+```plantuml
+@startuml Registration
+
+(*) --> "Recieve Data about User"
+
+if "User Exists" then
+  -->[true] (*)
+else
+  -->[false] "Register New User"
+  -->[Ending process] (*)
+endif
+
+@enduml
+```
