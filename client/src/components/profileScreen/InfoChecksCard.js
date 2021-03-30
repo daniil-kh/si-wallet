@@ -5,7 +5,7 @@ import Colors from '../../constants/Colors';
 import * as Global from '../../Global';
 
 const InfoCard = (props) => {
-  const contentList = props.contentList.map((item) => {
+  const contentList = props.contentList().map((item) => {
     return (
       <View style={styles.menuSection} key={item.title + Math.random()}>
         <Text style={styles.menuItemTitle} numberOfLines={1}>

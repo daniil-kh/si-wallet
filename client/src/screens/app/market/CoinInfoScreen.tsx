@@ -86,7 +86,7 @@ const CoinInfoScreen: React.FC<CoinInfoScreenProps> = (props) => {
         />
         <InfoCard
           contentList={() => {
-            getContentList('coinInfo');
+            return getContentList('coinInfo');
           }}
           title="Coin Info"
           cardStyle={{marginBottom: 24, height: 244}}

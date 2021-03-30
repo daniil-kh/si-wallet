@@ -7,19 +7,27 @@ import {useNavigation} from '@react-navigation/native';
 
 const AVATAR_SIZE = 118;
 const MARGIN_BOTTOM = 16;
+const HEADER_HEIGHT = 300;
 const ITEM_SIZE = AVATAR_SIZE + MARGIN_BOTTOM;
 
 const ContentList = (props) => {
   const navigation = useNavigation();
   const scrollY = useRef(new Animated.Value(0)).current;
 
+  console.log('props.news', props.data);
+
   const renderNewsCard = ({item, index}) => {
-    const inputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 2)];
+    const inputRange = [
+      -1,
+      0,
+      HEADER_HEIGHT + ITEM_SIZE * index,
+      HEADER_HEIGHT + ITEM_SIZE * (index + 2),
+    ];
     const opacityInputRange = [
       -1,
       0,
-      ITEM_SIZE * index,
-      ITEM_SIZE * (index + 0.8),
+      HEADER_HEIGHT + ITEM_SIZE * index,
+      HEADER_HEIGHT + ITEM_SIZE * (index + 0.8),
     ];
     const scale = scrollY.interpolate({
       inputRange: inputRange,

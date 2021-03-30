@@ -8,7 +8,7 @@ export interface userAdditionalInfo {
 
 export const getUserAdditionalInfo = (
   isNorificationsOn: boolean = false,
-  autoRenevalStatus: boolean = false,
+  autoRenevalStatus: boolean = true,
   isBotsActive: boolean = false,
 ): userAdditionalInfo[] => {
   return [

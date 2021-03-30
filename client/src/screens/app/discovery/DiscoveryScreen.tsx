@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native';
 import Colors from '../../../constants/Colors';
 import * as Global from '../../../Global';
 import LoadingScreen from '../../../components/LoadingScreen';
@@ -31,8 +38,11 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
       try {
         let result = await NewsAPI.getNews(token, 0);
         if (result.statusCode === 200) {
-          setNews(result.data);
-          setContentCards(result.data);
+          //console.log(result.data)
+          //console.log(result.data.data.top)
+          //console.log(result.data.data.latest)
+          setNews(result.data.data);
+          setContentCards(result.data.data);
         } else {
           Global.errorHandler(result);
         }
@@ -45,24 +55,21 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
   );
 
   useEffect(() => {
-    //getNews(token);
+    getNews(token);
     //console.log(newsData)
-    setNews(newsData);
-    setContentCards(newsData);
-    console.log('LATEST');
-    //console.log(contentCards.latest);
+    //setNews(newsData);
+    //setContentCards(newsData);
   }, []);
 
-  // if (!userId && !token) {
-  //   CardsContent = ErrorScreen;
-  // } else {
-  //
-  //   if (loadingError) {
-  //     CardsContent = ErrorScreen;
-  //   } else if (newsLoading) {
-  //     CardsContent = LoadingScreen;
-  //   }
-  // }
+  if (!userId && !token) {
+    CardsContent = ErrorScreen;
+  } else {
+    if (loadingError) {
+      CardsContent = ErrorScreen;
+    } else if (newsLoading) {
+      CardsContent = LoadingScreen;
+    }
+  }
   CardsContent = ContentList;
 
   const renderEventItem = ({item, index}: {item: any; index: number}) => {
@@ -80,10 +87,7 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
             });
           }}
           style={styles.eventWrapper}>
-          <Image
-            source={{uri: item.originalImageUrl}}
-            style={styles.eventImage}
-          />
+          <Image source={{uri: item.image}} style={styles.eventImage} />
         </TouchableOpacity>
         <Text style={styles.eventTitle} numberOfLines={1}>
           {item.title}
@@ -108,29 +112,29 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
     return (
       <View style={{flex: 1, backgroundColor: Colors.blackBackground}}>
         <CardsContent
-          data={newsData.latest}
+          data={contentCards?.latest?.data}
           listStyle={styles.flatList}
           isAction={true}
           errorText={'An error occured while getting news, try again'}
           onErrorPress={() => {
-            //getNews(token);
-            setNews(newsData);
-            setContentCards(newsData);
+            getNews(token);
+            // setNews(newsData);
+            // setContentCards(newsData);
           }}
-          // header={() => (
-          //   <View>
-          //     <Text style={styles.listHeader}>Top Events</Text>
-          //     <FlatList
-          //       showsHorizontalScrollIndicator={false}
-          //       style={styles.listStyle}
-          //       data={contentCards?.top}
-          //       keyExtractor={(item) => item._id}
-          //       renderItem={renderEventItem}
-          //       horizontal={true}
-          //     />
-          //     <Text style={{...styles.listHeader}}>News</Text>
-          //   </View>
-          // )}
+          header={() => (
+            <View>
+              <Text style={styles.listHeader}>Top Events</Text>
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                style={styles.listStyle}
+                data={contentCards?.top?.data}
+                keyExtractor={(item) => item._id}
+                renderItem={renderEventItem}
+                horizontal={true}
+              />
+              <Text style={{...styles.listHeader}}>News</Text>
+            </View>
+          )}
         />
       </View>
     );

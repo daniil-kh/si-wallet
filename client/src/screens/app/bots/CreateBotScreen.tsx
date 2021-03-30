@@ -45,7 +45,7 @@ const CreateBotScreen = (props) => {
     );
   };
 
-  console.log('SS');
+  
   return (
     <ScrollView style={styles.screen}>
       <DefaultTextInput

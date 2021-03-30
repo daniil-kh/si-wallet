@@ -23,12 +23,12 @@ const NewsCard = (props) => {
           </Text>
           <View style={{flex: 1, justifyContent: 'flex-end'}}>
             <Text style={styles.dateText}>
-              {new Date(props.news.publishedAt).toDateString()}
+              {new Date(props.news.time).toDateString()}
             </Text>
           </View>
         </View>
         <Image
-          source={{uri: props.news.originalImageUrl}}
+          source={{uri: props.news.image}}
           style={styles.newsImage}
         />
       </TouchableOpacity>

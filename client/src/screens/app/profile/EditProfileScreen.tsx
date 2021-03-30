@@ -42,7 +42,7 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = (props) => {
       />
       <InfoCard
         contentList={() => {
-          getContentList('personalInfo');
+          return getContentList('personalInfo');
         }}
         title="Account Info"
         cardStyle={styles.accountInfoCard}
@@ -56,7 +56,7 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = (props) => {
       />
       <InfoChecksCard
         contentList={() => {
-          getContentList('additionalInfo');
+          return getContentList('additionalInfo');
         }}
         title="Settings"
         cardStyle={styles.additionalInfoCard}

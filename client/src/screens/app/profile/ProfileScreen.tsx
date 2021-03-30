@@ -98,14 +98,14 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         />
         <InfoCard
           contentList={() => {
-            getContentList('user');
+            return getContentList('user');
           }}
           title="Account Info"
           cardStyle={styles.userPersonalInfoCard}
         />
         <InfoCard
           contentList={() => {
-            getContentList('balance');
+            return getContentList('balance');
           }}
           title="Balance Info"
           cardStyle={styles.userBalanceInfoCard}

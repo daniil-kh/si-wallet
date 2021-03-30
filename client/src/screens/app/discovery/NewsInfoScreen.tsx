@@ -37,10 +37,10 @@ const NewsInfoScreen: React.FC<NewsInfoScreenProps> = (props) => {
     <ScrollView style={styles.screen}>
       <Text style={styles.titleText}>{newsItem.title}</Text>
       <Text style={styles.dateText}>
-        {new Date(newsItem.publishedAt).toDateString()}
+        {new Date(newsItem.time * 1000).toDateString()}
       </Text>
       <Image
-        source={{uri: newsItem.originalImageUrl}}
+        source={{uri: newsItem.image}}
         style={styles.previewImage}
       />
       <Text style={styles.descriptionText}>{newsItem.description}</Text>
