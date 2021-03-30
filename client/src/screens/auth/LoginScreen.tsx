@@ -201,7 +201,8 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
             login={login}
             password={password}
           />
-          <Text style={styles.orLoginText}>Or login with</Text>
+          <Text style={styles.orLoginText}>  </Text>
+          {/* Or login with */}
           <SocialMediaAuthContainer />
         </View>
       </View>

@@ -13,7 +13,7 @@ export const iconsByType: iconsList = {
 
 const Bots: Bot[] = [
   {
-    title: 'MiniBot',
+    title: 'Silver',
     rentPrice: 'Free',
     rentTime: '30 days',
     tradingBalanceDown: 15,
@@ -24,7 +24,7 @@ const Bots: Bot[] = [
     url: require('../assets/images/8.jpg'), //9
   },
   {
-    title: 'StandartBot',
+    title: 'Gold',
     rentPrice: '10$',
     rentTime: '60 days',
     tradingBalanceDown: 45,
@@ -35,7 +35,7 @@ const Bots: Bot[] = [
     url: require('../assets/images/8.jpg'),
   },
   {
-    title: 'ProBot',
+    title: 'Platinum',
     rentPrice: '25$',
     rentTime: '90 days',
     tradingBalanceDown: 100,
@@ -46,7 +46,7 @@ const Bots: Bot[] = [
     url: require('../assets/images/8.jpg'), //10
   },
   {
-    title: 'NetPremium',
+    title: 'Black',
     rentPrice: '100$',
     rentTime: '90 days',
     tradingBalanceDown: 1000,
