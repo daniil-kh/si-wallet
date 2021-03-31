@@ -1,0 +1,16 @@
+```plantuml
+@startuml
+
+[*] --> Configuration : Settings
+Configuration: # Choose listing coins
+Configuration: # Choose favorite pairs
+Configuration -right-> SetUp : Configure coin settings
+Configuration --> Cancelled : Cancel configuration
+SetUp --> Configured : Succeeded / Save Result
+SetUp : # Choose currency
+SetUp : # Choose 24h change option
+Configured --> [*]
+Cancelled --> [*]
+
+@enduml
+```

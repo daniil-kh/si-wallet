@@ -1,0 +1,17 @@
+```plantuml
+@startuml Component&Diployment
+node server{
+  component "WebServer"{
+    [REST] .> HTTP : use
+  }
+  database "Postgresql"{
+    [data] -up- REST
+  }
+  [LocalData] - REST
+}
+
+component "Client"{
+  [UI] .right.> HTTP: use
+}
+@enduml
+```

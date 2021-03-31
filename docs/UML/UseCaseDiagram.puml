@@ -1,0 +1,32 @@
+```plantuml
+@startuml Use Case diagramm
+
+left to right direction
+
+actor Authentification 
+Authentification << service >>
+
+package ApplicationUseCases {
+  usecase "Wallet" as wallet
+  usecase "Bots and Invest plans" as invest
+ usecase info as "News
+  --
+  Reviews
+  --
+  Analytics"
+  usecase login as "Login"
+  usecase register as "Register"
+}
+
+login -- Authentification
+register -- Authentification
+RegisteredUser --> wallet
+RegisteredUser -> info
+RegisteredUser -> login
+RegisteredUser -> invest
+NewUser --> register
+NewUser --> info
+
+@enduml
+```
+####

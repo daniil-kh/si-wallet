@@ -1,0 +1,67 @@
+```plantuml
+@startuml ClassDiagram
+
+abstract class model
+class User {
+  -username: string
+  -password: sha256 string
+  -email: string
+}
+class News{
+  -id: number
+  -api_id: string
+}
+
+model <|-- News
+model <|-- User
+
+class NewsService{
+  -newsRepository: News
+  +findAll()
+  +findLatest(timestamp)
+  +findFavorites(user_id: number)
+}
+
+News *-- NewsService
+
+class UserService{
+  -userRepository: User
+  +findAll()
+  +findOneById(id: number)
+  +create(user: UserDto)
+  +validate(user: LoginFormDto)
+  +findOneByEmail(email: string)
+}
+
+User *-- UserService
+
+class NewsController{
+  -newsService: NewsService
+  +getNews(): Get()
+}
+
+NewsService *-- NewsController
+
+class AuthController{
+  -userService: UserService
+  +login(user: LoginFormDto): Post()
+  +create(user: UserDto): Post()
+}
+
+AuthController -down-* UserService
+
+Package interfaces{
+  interface UserDto{
+    +username: string
+    +email: string
+    +password: sha256 string
+  }
+  interface LoginDto{
+    +email: string
+    +password: sha256 string
+  }
+
+}
+
+@enduml
+```

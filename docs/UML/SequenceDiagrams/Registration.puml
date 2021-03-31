@@ -1,0 +1,54 @@
+```plantuml
+@startuml Registration
+
+hide footbox
+
+actor User
+User -> UI: RegisterButton
+activate UI
+
+UI -> AuthController: << POST >>
+activate AuthController
+
+AuthController -> UserService: create(username,password)
+activate UserService
+deactivate AuthController
+
+
+UserService -> UserService: checkExists
+activate UserService
+deactivate UserService
+
+alt exist == true
+
+UserService --> AuthController: AlreadyExist
+activate AuthController
+AuthController --> UI : AlreadyExist
+deactivate AuthController
+UI --> User: Error(AlreadyExist) 
+
+else exist == false
+
+database Database
+UserService -> UserService: CreateUser
+activate UserService
+UserService -> Database: addNewUser
+activate Database
+UserService <-- Database: NewUserInstance
+deactivate Database
+
+deactivate UserService
+UserService --> AuthController: returnNewUserInstance
+deactivate UserService
+
+activate AuthController
+AuthController --> UI : Registered
+deactivate AuthController
+
+UI --> User: Success(Registered)
+deactivate UI
+
+end
+
+@enduml
+```

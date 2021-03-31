@@ -1,0 +1,14 @@
+```plantuml
+@startuml Create Bot
+(*) --> "Create new Bot"
+--> ===B1===
+--> "Fill Bot"
+--> ===B2===
+
+===B1=== -right-> "Send wallet transaction request"
+-down-> "Confirm transaction"
+--> ===B2===
+
+--> (*)
+@enduml
+```
