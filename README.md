@@ -13,7 +13,7 @@ $ git clone https://github.com/daniil-kh/si-wallet.git
 Run server
 
 ```bash
-$ cd SI-Wallet/server/ && yarn compose
+$ cd si-wallet/server/ && yarn compose
 $ yarn install && yarn start
 ```
 
