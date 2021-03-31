@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres"  
+    env_file:
+      - database.env 
+    volumes:
+      - /data/db/postgres
+    ports: 
+      - "5432:5432"
