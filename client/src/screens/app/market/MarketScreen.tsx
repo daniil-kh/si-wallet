@@ -61,10 +61,25 @@ const MarketScreen: React.FC<MarketScreenProps> = (props) => {
     }
   }
 
+  const generateRandomData = () => {
+    return [
+      {x: 1617926400000, y: Math.random() * 200 + 100},
+      {x: 1618012800000, y: Math.random() * 200 + 100},
+      {x: 1618099200000, y: Math.random() * 200 + 100},
+      {x: 1618185600000, y: Math.random() * 200 + 100},
+      {x: 1618272000000, y: Math.random() * 200 + 100},
+      {x: 1618358400000, y: Math.random() * 200 + 100},
+      {x: 1618444800000, y: Math.random() * 200 + 100},
+      {x: 1618515418000, y: Math.random() * 200 + 100},
+    ];
+  };
+
   const renderCoinCard = ({item, index}: {item: any; index: number}) => {
+    const data = generateRandomData();
     return (
       <CoinCard
         currency={item}
+        data={data}
         isActive={true}
         isLast={index === contentCards.length - 1 ? true : false}
         onCurrencyPress={() => {
@@ -73,6 +88,7 @@ const MarketScreen: React.FC<MarketScreenProps> = (props) => {
             params: {
               coin: item,
               title: item.symbol,
+              data: data,
             },
           });
         }}

@@ -9,12 +9,14 @@ import ErrorScreen from '../../../components/ErrorScreen';
 import {useSelector} from 'react-redux';
 import * as WalletAPI from '../../../API/WalletAPI';
 import {getCoinInfo, coinInfo} from '../../../schemes/index';
+import PriceChart from '../../../components/marketScreen/PriceChart';
 
 import {CoinInfoScreenProps} from './types/routing';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const CoinInfoScreen: React.FC<CoinInfoScreenProps> = (props) => {
   const {token} = useSelector((state) => state.auth);
-  const {coin} = props.route.params;
+  const {coin, data} = props.route.params;
 
   const [currency, setCurrency] = useState();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -55,7 +57,6 @@ const CoinInfoScreen: React.FC<CoinInfoScreenProps> = (props) => {
     [currency],
   );
 
-
   if (loadingError) {
     return (
       <ErrorScreen
@@ -70,7 +71,7 @@ const CoinInfoScreen: React.FC<CoinInfoScreenProps> = (props) => {
     return <LoadingScreen />;
   } else {
     return (
-      <View style={{flex: 1, backgroundColor: Colors.blackBackground}}>
+      <ScrollView style={{flex: 1, backgroundColor: Colors.blackBackground}}>
         <BalanceInfoCard
           dayChangePercent={currency?.market_data.percent_change_usd_last_24_hours.toFixed(
             2,
@@ -91,7 +92,8 @@ const CoinInfoScreen: React.FC<CoinInfoScreenProps> = (props) => {
           title="Coin Info"
           cardStyle={{marginBottom: 24, height: 244}}
         />
-      </View>
+        <PriceChart data={data} cardStyle={{marginBottom: 24, height: 400}} />
+      </ScrollView>
     );
   }
 };

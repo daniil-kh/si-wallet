@@ -3,8 +3,10 @@ import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/Colors';
 import * as Global from '../../Global';
 
+import PriceChartThumbnail from './PriceChartThumbnail';
+
 const CoinCard = (props) => {
-  const {currency} = props;
+  const {currency, data} = props;
   return (
     <TouchableOpacity
       onPress={() => {
@@ -42,15 +44,8 @@ const CoinCard = (props) => {
             ) + '%'}
           </Text>
         </View>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-          <Image
-            source={require('../../assets/images/Volume.png')}
-            style={{...styles.volumeImage, marginRight: 3}}
-          />
-          <Image
-            source={require('../../assets/images/Volume.png')}
-            style={styles.volumeImage}
-          />
+        <View style={styles.chart}>
+          <PriceChartThumbnail data={data} />
         </View>
         <View style={{flex: 1, alignItems: 'flex-end'}}>
           <View style={{alignItems: 'flex-end'}}>
@@ -111,9 +106,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
     width: '100%',
   },
-  volumeImage: {
-    width: 44,
-    height: 36,
+  chart: {
+    width: '25%',
+    height: '70%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
 });
 
