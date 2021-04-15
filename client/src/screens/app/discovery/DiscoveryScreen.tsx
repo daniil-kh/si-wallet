@@ -38,9 +38,6 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
       try {
         let result = await NewsAPI.getNews(token, 0);
         if (result.statusCode === 200) {
-          //console.log(result.data)
-          //console.log(result.data.data.top)
-          //console.log(result.data.data.latest)
           setNews(result.data.data);
           setContentCards(result.data.data);
         } else {
@@ -48,6 +45,7 @@ const DiscoveryScreen: React.FC<DiscoveryScreenProps> = (props) => {
         }
       } catch (err) {
         setLoadingError(err.message);
+        console.log(err)
       }
       setNewsLoading(false);
     },
