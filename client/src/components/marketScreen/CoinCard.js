@@ -7,6 +7,8 @@ import PriceChartThumbnail from './PriceChartThumbnail';
 
 const CoinCard = (props) => {
   const {currency, data} = props;
+  console.log(currency)
+
   return (
     <TouchableOpacity
       onPress={() => {

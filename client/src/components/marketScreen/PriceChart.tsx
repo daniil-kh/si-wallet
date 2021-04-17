@@ -66,12 +66,9 @@ const PriceChart: React.FC<PriceChartProps> = ({
         />
         <Line
           theme={{
-            stroke: {color: defaultColor, width: 5},
-            scatter: {
-              default: {color: Colors.grayText, width: 10, height: 10, rx: 10},
-              selected: {color: activeColor},
-            },
+            stroke: {color: defaultColor, width: 4},
           }}
+          smoothing="cubic-spline"
           tooltipComponent={
             <Tooltip
               theme={{
